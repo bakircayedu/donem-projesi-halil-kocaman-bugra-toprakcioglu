@@ -1,0 +1,73 @@
+﻿@using MotoyolBlog.Models.Entity
+@model MotoyolBlog.Models.ViewModel
+@{
+    ViewBag.Title = "MakaleOku";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@foreach (var mkl in Model.Makale_model)
+{
+    <img src="@mkl.img" class="makaleResim" />
+    <div class="makaleDetayBilgi">
+        <span style="color:#f31d2a">@ViewBag.ad</span> tarafından @mkl.tarih tarihinde yazıldı.
+    </div>
+    <div class="makaleKategori">
+        Kategori @ViewBag.k;
+    </div>
+    <h3 class="makaleBaslik">@mkl.baslik</h3>
+    <div class="icerik">
+        @mkl.icerik
+
+    </div>
+
+
+        <hr style="color:#f31d2a" />
+        <div class="makaleİkon">
+            <i class="fas fa-exclamation-triangle fa-2x" onclick="ReportForm()"><a onclick="ReportForm()" id="RaporEt"></a></i>
+            <form method="post" id="fav" action="/SideMenu/Favorilerim">
+                <input name="icerik_id" value="@mkl.id" type="text" hidden />
+                <button type="submit" style="border:0;background:none;"><i class="fas fa-heart fa-2x" onclick="FavoriEkle()"></i></button>
+            </form></div>
+        <hr style="color:#f31d2a" />
+
+    <form class="rapor" id="rapor">
+        <label>Açıklama Giriniz</label><i class="fas fa-times" onclick="RaporCancel()"></i>
+        <textarea class="aciklamaRapor" required>
+
+    </textarea>
+        <input type="submit" onclick="RaporSuccess()" class="raporButon" />
+    </form>
+
+
+    <h3>Yorum Yap</h3>
+
+    <div class="YorumYap">
+        @using (Html.BeginForm("MakaleOku", "Main", FormMethod.Post, new { @class = "YorumGonder" }))
+        {
+            <textarea name="yorum"></textarea>
+            <input name="icerik_id" value="@mkl.id" type="text" hidden />
+            <input type="submit" class="btnYorumGonder" />
+        }
+    </div>
+    <h3>Yorumlar</h3>
+    foreach (var item in Model.yorum_model)
+    {
+
+        <hr style="color:#f31d2a" />
+        <div class="Yorum Listesi">
+            <div class="Yorum">
+                <div class="YorumBaslik">
+                    <span style="color:#f31d2a">@item.Kullanicilar.ad</span> demiş ki;
+                </div>
+                <div class="Yorumicerik">
+                    @item.yorum
+                </div>
+                <span class="YorumTarih">@item.yorum_tarih</span>
+            </div>
+        </div>
+    }
+
+
+    <script src="~/Scripts/makaleReport.js"></script>
+
+}

@@ -1,0 +1,26 @@
+﻿@using MotoyolBlog.Models.Entity
+@model List<Makaleler>
+@{
+    ViewBag.Title = "Makalelerim";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Makalelerim</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Başlık Adı</th>
+        <th>İçerikler</th>
+    </tr>
+    <tbody>
+        @foreach (var icrk in Model)
+        {
+        <tr>
+            <td> @icrk.baslik</td>
+            <td> @icrk.icerik</td>
+
+        </tr>
+        }
+    </tbody>
+
+</table>

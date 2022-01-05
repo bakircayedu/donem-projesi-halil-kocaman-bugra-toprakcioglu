@@ -1,0 +1,118 @@
+﻿.makaleResim {
+    width: 100%;
+    max-height: 30rem;
+    object-fit: cover;
+    border-radius: 1.2rem;
+}
+
+.makaleBaslik {
+    width: 90%;
+    font-family: "Open Sans",sans-serif;
+    font-size: 4.1rem;
+    color: #f31d2a;
+    line-height: 5.6rem;
+    margin-top: 2rem;
+    margin-bottom: 2.2rem;
+    text-transform: capitalize;
+}
+
+.makaleDetayBilgi, .makaleKategori {
+    background-color: #333333;
+    color: #fafafa;
+    display: inline;
+    padding: 0.6rem;
+    border-radius: 0.3rem;
+    margin-top: 1rem;
+}
+
+.makaleKategori {
+    float: right;
+}
+
+.icerik {
+    font-size: 2rem;
+    width: 95%;
+    margin-bottom: 2.5rem;
+}
+
+.makaleİkon {
+    padding: 1rem;
+}
+
+    .makaleİkon i {
+        margin-right: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+        .makaleİkon i:hover {
+            color: #f31d2a;
+        }
+
+#rapor {
+    display: none;
+    position: relative;
+    top: 100%;
+    width: 40rem;
+}
+
+    #rapor i {
+        float: right;
+        cursor: pointer;
+    }
+
+.raporButon {
+    color: #fafafa;
+    background-color: #f31d2a;
+    padding: 1rem;
+}
+
+.aciklamaRapor {
+    display: block;
+    height: 6rem;
+    width: 100%;
+    margin-bottom: 1rem;
+    border-radius: 1.5rem;
+}
+
+.YorumYap {
+    margin-top: 2rem;
+    padding: 1rem;
+}
+
+.YorumGonder textarea {
+    width: 100%;
+    height: 10rem;
+    border: .15rem #f31d2a solid;
+    border-radius: .5rem;
+    font-size: 1.5rem;
+}
+
+.btnYorumGonder {
+    font-family: inherit;
+    width: 15rem;
+    height: 3.5rem;
+    border: none;
+    border-radius: 1rem;
+    background: #f31d2a;
+    color: #fafafa;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.Yorum {
+    margin-top: 3rem;
+    margin-bottom: 5rem;
+    background-color: #333333;
+    color: #fafafa;
+    padding: 0.2rem 1rem;
+    border-radius: 1rem;
+}
+
+.Yorumicerik {
+    margin-bottom: 1rem;
+}
+
+.YorumTarih {
+    float: right;
+}

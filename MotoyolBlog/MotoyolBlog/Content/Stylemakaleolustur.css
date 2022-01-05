@@ -1,0 +1,48 @@
+.article-headtext{
+    display: block;
+    width: 90%;
+    height: auto;
+    font-size: 2.4rem;
+    margin: 2rem 2rem;
+  }
+  label {
+  background-color: #f31d2a;
+  color: white;
+  padding: 0.5rem;
+  font-family: sans-serif;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+.category-select{
+  float: right;
+}
+.send-article{
+  font-family: inherit;
+  font-size: 2rem;
+  padding: 1.2rem 1.2rem;
+  margin: 2rem 0 2rem 0;
+  background-color: #f31d2a;
+  color: #fafafa;
+  border-radius: 0.7rem;
+  border:none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%,0);
+
+}
+.send-article:hover{
+  color:#f31d2a;
+  background-color: #333333;
+}
+.toolbar-border{
+ background-color: black;
+}
+.article-editor
+{
+display: block;
+margin-top: 1rem;
+width:100%;
+}

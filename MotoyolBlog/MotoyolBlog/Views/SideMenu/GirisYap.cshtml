@@ -1,0 +1,120 @@
+﻿@using MotoyolBlog.Models.Entity
+@model  MotoyolBlog.Models.Entity.Kullanicilar
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bakbak+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    @Styles.Render("~/Content/Genelstyle.css")
+    @Styles.Render("~/Content/Anasayfastyle.css")
+    @Styles.Render("~/Content/Girisstyle.css")
+    @Scripts.Render("~/Scripts/giris.js")
+    <script src="giris.js"></script>
+    <title>MotoyolBlog</title>
+</head>
+
+<body>
+    <header>
+        <div class="head-container">
+            <div id="blog-head">
+                <i class="fas fa-motorcycle fa-3x"></i>
+                <h1 id="blog-headertext">MotoyolBlog</h1>
+            </div>
+            <button onclick="OpenFunction()" id="btn-login"><i class="fas fa-sign-in-alt"></i><span class="atext">Giriş Yap</span></button>
+        </div>
+    </header>
+
+    <div class="register-screen">
+        <span class="register-text"><p>Haydi sende bize katıl..</p></span>
+        <button onclick="OpenRegister()" id="btn-register" class="btn-register">Üye Ol</button>
+
+        <div class="modal" id="MyModal">
+            <div class="modalContent">
+                <div class="modalHeader">
+                    <span onclick="CloseFunction()" id="close" style="color: red;" class="close">&#9874</span>
+                </div>
+                <div class="modalBody">
+                    <div class="login-box">
+                        <!--<img src="img/avatar.png" class="avatar">-->
+                        <h1 class="LoginAndRegisterTitle">Giriş Yap</h1>
+                        @using (Html.BeginForm("GirisYap", "SideMenu", FormMethod.Post))
+                        {
+                            <p>E-posta Adresiniz</p>
+                            <input type="email" name="eposta" placeholder="E-posta adresiniz">
+                            <p>Şifreniz</p>
+                            <input type="Password" name="sifre" placeholder="Şifrenizi Giriniz">
+                            <input type="submit" value="Giriş Yap">
+                            <a href="#">Şifremi Unuttum</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modalRegister" id="MyModalRegister">
+            <div class="modalContent">
+                <div class="modalHeader">
+                    <span onclick="CloseRegister()" id="close" style="color: red;" class="close">&#9874</span>
+                </div>
+                <div class="modalBody">
+                    <div class="login-box">
+                        <!--<img src="img/avatar.png" class="avatar">-->
+                        <h1 class="LoginAndRegisterTitle">Kayıt Ol</h1>
+                        @using (Html.BeginForm("Kayitol", "SideMenu", FormMethod.Post))
+                        {
+                            <p>Kullanıcı Adınız</p>
+                            @Html.TextBoxFor(model => model.ad, new { @class = "article-headtext", placeholder = "Kullanıcı Adı Giriniz." })
+                            <p>E-posta Adresiniz</p>
+                            @Html.TextBoxFor(model => model.eposta, new { @class = "article-headtext", @type = "email", placeholder = "Eposta Giriniz." })
+                            <p>Şifreniz</p>
+                            @Html.PasswordFor(model => model.sifre, new { @class = "article-headtext", placeholder = "Şifre Giriniz." })
+
+                            <input type="submit" name="submit" value="Register">
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="foot-container">
+            <div class="social-media">
+                <h3>Sosyal Medya Hesaplarımız</h3>
+                <ul>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
+                    <li><a href="#"><i class="fab fa-tiktok"></i></a></li>
+                </ul>
+            </div>
+            <div class="footer-about">
+                <p>© Copyright 2021 Motoyol Blog. Tüm hakları saklıdır.</p>
+                <ul>
+                    <li><a href="">Yardım</a></li>
+                    <li><a href="">İletişim</a></li>
+                    <li><a href="">Gizlilik</a></li>
+                    <li><a href="">Hakkında</a></li>
+                    <li><a href="">Şartlar</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </footer>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MotoyolBlogModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Favoriler">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="icerik_id" Type="Int32" />
+    <Property Name="uyeno" Type="Int32" />
+    <NavigationProperty Name="Kullanicilar" Relationship="Self.Fk_Fav_Kullanicilar" FromRole="Favoriler" ToRole="Kullanicilar" />
+    <NavigationProperty Name="Makaleler" Relationship="MotoyolBlogModel.Fk_Fav_icerik1" FromRole="Favoriler" ToRole="Makaleler" />
+  </EntityType>
+  <EntityType Name="Kategoriler">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Kategori_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Makaleler" Relationship="MotoyolBlogModel.FK_Icerik_Kategoriler1" FromRole="Kategoriler" ToRole="Makaleler" />
+  </EntityType>
+  <EntityType Name="Kullanicilar">
+    <Key>
+      <PropertyRef Name="uyeno" />
+    </Key>
+    <Property Name="uyeno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="eposta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="tarih" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Favoriler" Relationship="Self.Fk_Fav_Kullanicilar" FromRole="Kullanicilar" ToRole="Favoriler" />
+    <NavigationProperty Name="Yazarlar" Relationship="Self.FK_Yazarlar_Kullanicilar" FromRole="Kullanicilar" ToRole="Yazarlar" />
+    <NavigationProperty Name="Yoneticiler" Relationship="Self.FK_Yoneticiler_Kullanicilar" FromRole="Kullanicilar" ToRole="Yoneticiler" />
+    <NavigationProperty Name="Yorumlar" Relationship="Self.FK_Yorumlar_Kullanicilar" FromRole="Kullanicilar" ToRole="Yorumlar" />
+  </EntityType>
+  <EntityType Name="Yazarlar">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="uyeno" Type="Int32" />
+    <Property Name="icerik_id" Type="Int32" />
+    <NavigationProperty Name="Kullanicilar" Relationship="Self.FK_Yazarlar_Kullanicilar" FromRole="Yazarlar" ToRole="Kullanicilar" />
+    <NavigationProperty Name="Makaleler" Relationship="MotoyolBlogModel.FK_Yazarlar_Icerik1" FromRole="Yazarlar" ToRole="Makaleler" />
+  </EntityType>
+  <EntityType Name="Yoneticiler">
+    <Key>
+      <PropertyRef Name="yonet_id" />
+    </Key>
+    <Property Name="yonet_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="uyeno" Type="Int32" />
+    <Property Name="yetki" Type="Boolean" />
+    <NavigationProperty Name="Kullanicilar" Relationship="Self.FK_Yoneticiler_Kullanicilar" FromRole="Yoneticiler" ToRole="Kullanicilar" />
+  </EntityType>
+  <EntityType Name="Yorumlar">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="yorum" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="icerik_id" Type="Int32" />
+    <Property Name="uyeno" Type="Int32" />
+    <Property Name="yorum_tarih" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Kullanicilar" Relationship="Self.FK_Yorumlar_Kullanicilar" FromRole="Yorumlar" ToRole="Kullanicilar" />
+    <NavigationProperty Name="Makaleler" Relationship="MotoyolBlogModel.FK_Yorumlar_Icerik1" FromRole="Yorumlar" ToRole="Makaleler" />
+  </EntityType>
+  <Association Name="Fk_Fav_Kullanicilar">
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="0..1" />
+    <End Role="Favoriler" Type="Self.Favoriler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanicilar">
+        <PropertyRef Name="uyeno" />
+      </Principal>
+      <Dependent Role="Favoriler">
+        <PropertyRef Name="uyeno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Yazarlar_Kullanicilar">
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="0..1" />
+    <End Role="Yazarlar" Type="Self.Yazarlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanicilar">
+        <PropertyRef Name="uyeno" />
+      </Principal>
+      <Dependent Role="Yazarlar">
+        <PropertyRef Name="uyeno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Yoneticiler_Kullanicilar">
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="0..1" />
+    <End Role="Yoneticiler" Type="Self.Yoneticiler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanicilar">
+        <PropertyRef Name="uyeno" />
+      </Principal>
+      <Dependent Role="Yoneticiler">
+        <PropertyRef Name="uyeno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Yorumlar_Kullanicilar">
+    <End Role="Kullanicilar" Type="Self.Kullanicilar" Multiplicity="0..1" />
+    <End Role="Yorumlar" Type="Self.Yorumlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanicilar">
+        <PropertyRef Name="uyeno" />
+      </Principal>
+      <Dependent Role="Yorumlar">
+        <PropertyRef Name="uyeno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MotoyolBlogEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Favoriler" EntityType="Self.Favoriler" />
+    <EntitySet Name="Kategoriler" EntityType="Self.Kategoriler" />
+    <EntitySet Name="Kullanicilar" EntityType="Self.Kullanicilar" />
+    <EntitySet Name="Yazarlar" EntityType="Self.Yazarlar" />
+    <EntitySet Name="Yoneticiler" EntityType="Self.Yoneticiler" />
+    <EntitySet Name="Yorumlar" EntityType="Self.Yorumlar" />
+    <AssociationSet Name="Fk_Fav_Kullanicilar" Association="Self.Fk_Fav_Kullanicilar">
+      <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+      <End Role="Favoriler" EntitySet="Favoriler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Yazarlar_Kullanicilar" Association="Self.FK_Yazarlar_Kullanicilar">
+      <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+      <End Role="Yazarlar" EntitySet="Yazarlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Yoneticiler_Kullanicilar" Association="Self.FK_Yoneticiler_Kullanicilar">
+      <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+      <End Role="Yoneticiler" EntitySet="Yoneticiler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Yorumlar_Kullanicilar" Association="Self.FK_Yorumlar_Kullanicilar">
+      <End Role="Kullanicilar" EntitySet="Kullanicilar" />
+      <End Role="Yorumlar" EntitySet="Yorumlar" />
+    </AssociationSet>
+    <EntitySet Name="Makaleler" EntityType="MotoyolBlogModel.Makaleler" />
+    <AssociationSet Name="Fk_Fav_icerik1" Association="MotoyolBlogModel.Fk_Fav_icerik1">
+      <End Role="Makaleler" EntitySet="Makaleler" />
+      <End Role="Favoriler" EntitySet="Favoriler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Icerik_Kategoriler1" Association="MotoyolBlogModel.FK_Icerik_Kategoriler1">
+      <End Role="Kategoriler" EntitySet="Kategoriler" />
+      <End Role="Makaleler" EntitySet="Makaleler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Yazarlar_Icerik1" Association="MotoyolBlogModel.FK_Yazarlar_Icerik1">
+      <End Role="Makaleler" EntitySet="Makaleler" />
+      <End Role="Yazarlar" EntitySet="Yazarlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Yorumlar_Icerik1" Association="MotoyolBlogModel.FK_Yorumlar_Icerik1">
+      <End Role="Makaleler" EntitySet="Makaleler" />
+      <End Role="Yorumlar" EntitySet="Yorumlar" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(MotoyolBlogModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(MotoyolBlogModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="MakaleListele" ReturnType="Collection(MotoyolBlogModel.MakaleListele_Result)" />
+    <FunctionImport Name="MakaleListeleYeni" ReturnType="Collection(MotoyolBlogModel.MakaleListeleYeni_Result)" />
+    <FunctionImport Name="MakaleListesi" ReturnType="Collection(MotoyolBlogModel.MakaleListesi_Result)" />
+  </EntityContainer>
+  <EntityType Name="Makaleler">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="icerik" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="kategori_id" Type="Int32" />
+    <Property Name="tarih" Type="DateTime" Precision="3" />
+    <Property Name="baslik" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Favoriler" Relationship="MotoyolBlogModel.Fk_Fav_icerik1" FromRole="Makaleler" ToRole="Favoriler" />
+    <NavigationProperty Name="Kategoriler" Relationship="MotoyolBlogModel.FK_Icerik_Kategoriler1" FromRole="Makaleler" ToRole="Kategoriler" />
+    <NavigationProperty Name="Yazarlar" Relationship="MotoyolBlogModel.FK_Yazarlar_Icerik1" FromRole="Makaleler" ToRole="Yazarlar" />
+    <NavigationProperty Name="Yorumlar" Relationship="MotoyolBlogModel.FK_Yorumlar_Icerik1" FromRole="Makaleler" ToRole="Yorumlar" />
+    <Property Name="img" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="yazarid" Type="Int32" />
+  </EntityType>
+  <Association Name="Fk_Fav_icerik1">
+    <End Type="MotoyolBlogModel.Makaleler" Role="Makaleler" Multiplicity="0..1" />
+    <End Type="MotoyolBlogModel.Favoriler" Role="Favoriler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Makaleler">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Favoriler">
+        <PropertyRef Name="icerik_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Icerik_Kategoriler1">
+    <End Type="MotoyolBlogModel.Kategoriler" Role="Kategoriler" Multiplicity="0..1" />
+    <End Type="MotoyolBlogModel.Makaleler" Role="Makaleler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategoriler">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Makaleler">
+        <PropertyRef Name="kategori_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Yazarlar_Icerik1">
+    <End Type="MotoyolBlogModel.Makaleler" Role="Makaleler" Multiplicity="0..1" />
+    <End Type="MotoyolBlogModel.Yazarlar" Role="Yazarlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Makaleler">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Yazarlar">
+        <PropertyRef Name="icerik_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Yorumlar_Icerik1">
+    <End Type="MotoyolBlogModel.Makaleler" Role="Makaleler" Multiplicity="0..1" />
+    <End Type="MotoyolBlogModel.Yorumlar" Role="Yorumlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Makaleler">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Yorumlar">
+        <PropertyRef Name="icerik_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="MakaleListele_Result">
+    <Property Type="String" Name="baslik" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="icerik" Nullable="true" />
+    <Property Type="String" Name="Kategori_ad" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="tarih" Nullable="true" />
+    <Property Type="Binary" Name="resim" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="MakaleListeleYeni_Result">
+    <Property Type="String" Name="baslik" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="icerik" Nullable="true" />
+    <Property Type="String" Name="Kategori_ad" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="tarih" Nullable="true" Precision="23" />
+    <Property Type="String" Name="img" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="MakaleListesi_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="yazarid" Nullable="true" />
+    <Property Type="String" Name="baslik" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="icerik" Nullable="true" />
+    <Property Type="String" Name="Kategori_ad" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="tarih" Nullable="true" Precision="23" />
+    <Property Type="String" Name="img" Nullable="true" MaxLength="250" />
+  </ComplexType>
+</Schema>

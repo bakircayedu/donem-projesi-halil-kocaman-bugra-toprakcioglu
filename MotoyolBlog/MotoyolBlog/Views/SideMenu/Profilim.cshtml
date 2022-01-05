@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Profilim";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Profilim</h2>
+
+<h2 class="profilUsername">@Session["ad"]</h2>
+<hr style="color:#f31d2a" />
+<form id="sifreGuncelle" class="sifreGuncelle">
+    <h3>Şifre değiştirme</h3>
+    <table>
+        <tr>
+            <td>
+                <div class="passvalue">
+                    <label>Eski Şifreniz</label><input type="password" required />
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="passvalue">
+                    <label>Yeni Şifreniz </label><input type="password" required />
+                </div>
+            </td>
+        </tr>
+
+    </table>
+    <input type="submit" value="Kaydet" class="BtnpassChange">
+</form>
+<hr style="color:#f31d2a" />

@@ -1,0 +1,35 @@
+﻿@using MotoyolBlog.Models.Entity
+@model IEnumerable<MakaleListesi_Result>
+@{
+    ViewBag.Title = "Makalelerim";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Makalelerim</h2>
+
+ 
+
+
+     @foreach (var icrk in Model)
+     {
+        <div class="card">
+            <img src="@icrk.img" alt="" class="card-image">
+            <div class="card-body">
+                <h4 class="card-title">@icrk.baslik</h4>
+                <p class="card-text">
+                    @icrk.icerik.Substring(0, 20)
+                </p>
+                <a href="/Main/MakaleOku/@icrk.id" class="btn-red"><i class="fas fa-arrow-circle-right"></i><span class="atext">Devamını Oku</span></a>
+                <div class="makalelerimİcon">
+                    <i class="fas fa-wrench makaleDuzenle"><a href="#" class="makaleDuzenle"></a></i>
+                    <form id="sil" method="post" action="MakaleSil">
+                        <input name="id" value="@icrk.id" type="text" hidden />
+                        <button type="submit" style="border:0;background:none;"> <i class="fas fa-trash-alt makaleDuzenle"></i></button>
+                    </form>
+                </div>
+
+            </div>
+            </div>
+  }
+
+ 

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="80bff8677d374ff8af25ccc483f6aa26" Name="Diagram1">
+        <EntityTypeShape EntityType="MotoyolBlogModel.Favoriler" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MotoyolBlogModel.Kategoriler" Width="1.5" PointX="1.5" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MotoyolBlogModel.Kullanicilar" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MotoyolBlogModel.Yazarlar" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MotoyolBlogModel.Yoneticiler" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MotoyolBlogModel.Yorumlar" Width="1.5" PointX="6" PointY="5.375" IsExpanded="true" />
+        <AssociationConnector Association="MotoyolBlogModel.Fk_Fav_Kullanicilar" ManuallyRouted="false" />
+        <AssociationConnector Association="MotoyolBlogModel.FK_Yazarlar_Kullanicilar" ManuallyRouted="false" />
+        <AssociationConnector Association="MotoyolBlogModel.FK_Yoneticiler_Kullanicilar" ManuallyRouted="false" />
+        <AssociationConnector Association="MotoyolBlogModel.FK_Yorumlar_Kullanicilar" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MotoyolBlogModel.Makaleler" Width="1.5" PointX="7.375" PointY="11.125" />
+        <AssociationConnector Association="MotoyolBlogModel.Fk_Fav_icerik1" />
+        <AssociationConnector Association="MotoyolBlogModel.FK_Icerik_Kategoriler1" />
+        <AssociationConnector Association="MotoyolBlogModel.FK_Yazarlar_Icerik1" />
+        <AssociationConnector Association="MotoyolBlogModel.FK_Yorumlar_Icerik1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

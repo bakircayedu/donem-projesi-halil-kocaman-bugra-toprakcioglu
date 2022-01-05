@@ -1,0 +1,23 @@
+﻿@using MotoyolBlog.Models.Entity
+@model IEnumerable<MakaleListesi_Result>
+
+@{ ViewBag.Title = "KullaniciDeneyimleri";
+    Layout = "~/Views/Shared/_MainLayout.cshtml"; }
+
+<h2>Kategori>Kullanıcı Deneyimleri</h2>
+
+@foreach (var dgskn in Model)
+{
+<div class="card">
+    <img src="@dgskn.img" alt="" class="card-image">
+    <div class="card-body">
+        <h4 class="card-title">@dgskn.baslik</h4>
+        <p class="card-text">
+            @dgskn.icerik.Substring(0, 20);
+
+        </p>
+        <a href="/Main/MakaleOku/@dgskn.id"class="btn-red"><i class="fas fa-arrow-circle-right"></i><span class="atext">Devamını Oku</span></a>
+        <a><span class="category">@dgskn.Kategori_ad</span></a>
+    </div>
+
+</div>};

@@ -1,0 +1,31 @@
+﻿@using MotoyolBlog.Models.Entity
+@model  MotoyolBlog.Models.Entity.Resimekle
+@{
+    ViewBag.Title = "MakaleOlustur";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Yeni Makale Oluştur</h2>
+<form action="MakaleOlustur" method="post" enctype="multipart/form-data">
+
+    
+    @Html.ValidationSummary(true)
+
+    @Html.TextBoxFor(model => model.baslik, new { @class = "article-headtext", placeholder = "Makale Başlığı Giriniz." })
+    <label>Kapak Fotoğrafı Belirtin</label>
+
+    <input type="file" id="actual-btn" name="img">
+
+    @Html.DropDownListFor(model => model.kategori_id, (List<SelectListItem>)ViewBag.Kategoriler, new { @class = "category-select" })
+
+
+
+    @Html.TextAreaFor(model => model.icerik, new { @rows = "20", @cols = "200" })
+
+
+
+    <input type="submit" value="Gönder" class="send-article">
+
+
+    
+</form>

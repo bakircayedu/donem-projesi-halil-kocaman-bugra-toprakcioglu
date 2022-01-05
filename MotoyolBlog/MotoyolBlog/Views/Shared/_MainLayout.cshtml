@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "_MainLayout";
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @Styles.Render("~/Content/Genelstyle.css")
+    @Styles.Render("~/Content/Anasayfastyle.css")
+    @Styles.Render("~/Content/Stylemakaleolustur.css")
+    @Styles.Render("~/Content/Stylemakaledevam.css")
+    @Styles.Render("~/Content/StyleProfilim.css")
+    <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
+
+    <title>MotoyolBlog Anasayfa</title>
+</head>
+<body>
+    <header>
+        <div class="head-container">
+            <div id="blog-head">
+                <i class="fas fa-motorcycle fa-3x"></i>
+                <h1 id="blog-headertext">MotoyolBlog</h1>
+                <div class="search-box">
+                    <input type="text" placeholder="Bulmak istediğiniz makaleyi arayabilirsiniz" spellcheck="false">
+                    <a href="#">
+                        <i class="fas fa-search"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </header>
+    <nav>
+        <div id="nav">
+            <div class="container mt20">
+                <ul>
+                    <li><a href="/Main/Index"><i class="fas fa-home"></i></a></li>
+                    <li><a href="/Main/GuncelGelisme" class="active">Güncel Gelişmeler</a></li>
+                    <li><a href="/Main/Anilar">Anılar</a></li>
+                    <li><a href="/Main/KullaniciDeneyimleri">Kullanıcı Deneyimleri</a></li>
+                    <li><a href="/Main/MotoGP">MotoGP</a></li>
+                    <li><a href="/Main/Diger">Diğer Konular</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <aside>
+        <div class="profile-box">
+            <h2 style="color:#f31d2a">Hoş Geldiniz </h2>
+            <p class="profile-text">
+               @Session["ad"]
+            </p>
+        </div>
+        <div class="side-menu">
+            <ul>
+                <li><a href="/Main/Makalelerim"><i class="fas fa-newspaper"></i><span class="atext">Makalelerim</span></a></li>
+                <li><a href="/SideMenu/Favorilerim"><i class="fas fa-heart"></i><span class="atext">Favorilerim</span></a></li>
+                <li><a href="/SideMenu/MakaleOlustur"><i class="fas fa-pencil-alt"></i><span class="atext">Yeni Makale Oluştur</span></a></li>
+                <li><a href="/SideMenu/Profilim"><i class="fas fa-user"></i><span class="atext">Profilim</span></a></li>
+                <li><a href="/SideMenu/CikisYap"><i class="fas fa-sign-out-alt"></i><span class="atext">Çıkış Yap</span></a></li>
+            </ul>
+        </div>
+    </aside>
+    <section>
+        <div class="section-container">
+            @RenderBody()
+        </div>
+    </section>
+    <footer>
+        <div class="foot-container">
+            <div class="social-media">
+                <h3>Sosyal Medya Hesaplarımız</h3>
+                <ul>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
+                    <li><a href="#"><i class="fab fa-tiktok"></i></a></li>
+                </ul>
+            </div>
+            <div class="footer-about">
+                <p>© Copyright 2021 Motoyol Blog. Tüm hakları saklıdır.</p>
+                <ul>
+                    <li><a href="">Yardım</a></li>
+                    <li><a href="">İletişim</a></li>
+                    <li><a href="">Gizlilik</a></li>
+                    <li><a href="">Hakkında</a></li>
+                    <li><a href="">Şartlar</a></li>
+                </ul>
+                <div class="up-button">
+                    <a href="#"><i class="fas fa-sort-up"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

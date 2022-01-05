@@ -1,0 +1,27 @@
+﻿@using MotoyolBlog.Models.Entity
+@model MotoyolBlog.Models.ViewModel
+@{ ViewBag.Title = "Favorilerim";
+    Layout = "~/Views/Shared/_MainLayout.cshtml"; }
+
+<h2>Favorilerim</h2>
+
+
+@foreach (var icrk in Model.favori_model)
+{
+    <div class="card">
+        <img src="@icrk.Makaleler.img" alt="" class="card-image">
+        <div class="card-body">
+            <h4 class="card-title">@icrk.Makaleler.baslik</h4>
+            <p class="card-text">
+                @icrk.Makaleler.icerik.Substring(0, 20)
+            </p>
+            <a href="/Main/MakaleOku/@icrk.Makaleler.id" class="btn-red"><i class="fas fa-arrow-circle-right"></i><span class="atext">Devamını Oku</span></a>
+            <div class="makalelerimİcon">
+                <form id="fav_sil" method="post" action="FavoriSil">
+                    <input name="icerik_id" value="@icrk.Makaleler.id" type="text" hidden />
+                    <button type="submit" style="border:0;background:none;"> <i class="fas fa-trash-alt makaleDuzenle"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+}

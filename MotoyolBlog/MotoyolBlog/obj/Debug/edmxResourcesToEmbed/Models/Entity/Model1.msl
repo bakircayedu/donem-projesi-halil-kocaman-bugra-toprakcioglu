@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MotoyolBlogModelStoreContainer" CdmEntityContainer="MotoyolBlogEntities">
+    <EntitySetMapping Name="Favoriler">
+      <EntityTypeMapping TypeName="IsTypeOf(MotoyolBlogModel.Favoriler)">
+        <MappingFragment StoreEntitySet="Favoriler">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="icerik_id" ColumnName="icerik_id" />
+          <ScalarProperty Name="uyeno" ColumnName="uyeno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kategoriler">
+      <EntityTypeMapping TypeName="IsTypeOf(MotoyolBlogModel.Kategoriler)">
+        <MappingFragment StoreEntitySet="Kategoriler">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Kategori_ad" ColumnName="Kategori_ad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kullanicilar">
+      <EntityTypeMapping TypeName="IsTypeOf(MotoyolBlogModel.Kullanicilar)">
+        <MappingFragment StoreEntitySet="Kullanicilar">
+          <ScalarProperty Name="uyeno" ColumnName="uyeno" />
+          <ScalarProperty Name="ad" ColumnName="ad" />
+          <ScalarProperty Name="eposta" ColumnName="eposta" />
+          <ScalarProperty Name="sifre" ColumnName="sifre" />
+          <ScalarProperty Name="tarih" ColumnName="tarih" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Yazarlar">
+      <EntityTypeMapping TypeName="IsTypeOf(MotoyolBlogModel.Yazarlar)">
+        <MappingFragment StoreEntitySet="Yazarlar">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="uyeno" ColumnName="uyeno" />
+          <ScalarProperty Name="icerik_id" ColumnName="icerik_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Yoneticiler">
+      <EntityTypeMapping TypeName="IsTypeOf(MotoyolBlogModel.Yoneticiler)">
+        <MappingFragment StoreEntitySet="Yoneticiler">
+          <ScalarProperty Name="yonet_id" ColumnName="yonet_id" />
+          <ScalarProperty Name="uyeno" ColumnName="uyeno" />
+          <ScalarProperty Name="yetki" ColumnName="yetki" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Yorumlar">
+      <EntityTypeMapping TypeName="IsTypeOf(MotoyolBlogModel.Yorumlar)">
+        <MappingFragment StoreEntitySet="Yorumlar">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="yorum" ColumnName="yorum" />
+          <ScalarProperty Name="icerik_id" ColumnName="icerik_id" />
+          <ScalarProperty Name="uyeno" ColumnName="uyeno" />
+          <ScalarProperty Name="yorum_tarih" ColumnName="yorum_tarih" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Makaleler">
+      <EntityTypeMapping TypeName="IsTypeOf(MotoyolBlogModel.Makaleler)">
+        <MappingFragment StoreEntitySet="Makaleler">
+          <ScalarProperty Name="yazarid" ColumnName="yazarid" />
+          <ScalarProperty Name="img" ColumnName="img" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="icerik" ColumnName="icerik" />
+          <ScalarProperty Name="kategori_id" ColumnName="kategori_id" />
+          <ScalarProperty Name="tarih" ColumnName="tarih" />
+          <ScalarProperty Name="baslik" ColumnName="baslik" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="MakaleListesi" FunctionName="MotoyolBlogModel.Store.MakaleListesi">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MotoyolBlogModel.MakaleListesi_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="yazarid" ColumnName="yazarid" />
+          <ScalarProperty Name="baslik" ColumnName="baslik" />
+          <ScalarProperty Name="icerik" ColumnName="icerik" />
+          <ScalarProperty Name="Kategori_ad" ColumnName="Kategori_ad" />
+          <ScalarProperty Name="tarih" ColumnName="tarih" />
+          <ScalarProperty Name="img" ColumnName="img" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>
