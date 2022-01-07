@@ -170,6 +170,7 @@ margin: auto;
 .card{
     justify-items: center;
     width: 70%;
+    height:20rem;
     margin:1rem;
     margin-bottom: 4rem;
     box-shadow: 0 4px 8px 0 rgba(243, 29, 42, 0.2);
